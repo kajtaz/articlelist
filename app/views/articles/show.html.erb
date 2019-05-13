@@ -1,0 +1,12 @@
+
+
+<%=image_tag @article.image.url(:medium) %>
+<n>
+
+<li><b><%= @article.title %></li></b>
+
+<li><%= @article.text %></li>
+
+<%= link_to 'New article', new_article_path %>
+<%= link_to 'edit article', edit_article_path %>
+<%= link_to 'Back', articles_path %>

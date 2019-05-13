@@ -1,0 +1,42 @@
+<h1>Added Articles</h1>
+
+<%= link_to 'New article', new_article_path, :class => "button btn btn-primary btn-md" %>
+
+
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+        <th scope="col">User</th>
+        <th scope="col">Image</th>
+        <th scope="col">User</th>
+
+      </tr>
+    </thead>
+    <tbody>
+
+    <% @articles.each do |article| %>
+
+      <tr>
+        <td><b><%= article.id %></b></td>
+        <td><b><%= article.title %></b></td>
+        <td><b><%= article.text %></b></td>
+        <div><%= truncate(article.text, :length  => 30) %> </div>
+        <td><%= article.user.email %>
+        <td><%= image_tag article.image.url(:thumb) %></td>
+
+
+          <td><%= link_to 'Show Article', article_path(article) %></td>
+          <% if article.user == current_user %>
+          <td><%= link_to 'Edit', edit_article_path(article) %></td>
+          <td><%= link_to 'Delete',
+                       article_path(article),
+                                   method: :delete,
+                                   data: { confirm: 'Are you sure?' } %> </td>
+        <% end %>
+  <% end %>
+
+</table>
